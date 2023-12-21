@@ -1,5 +1,5 @@
 module "private_subnets" {
-  source           = "../vpc_subnets"
+  source           = "github.com/dan-drew/terraform-aws-subnets"
   cidr_block       = cidrsubnet(var.cidr_block, var.subnet_group_cidr_bits, var.private_subnet_offset)
   subnet_cidr_bits = var.subnet_cidr_bits
   name             = "private"
@@ -9,7 +9,7 @@ module "private_subnets" {
 }
 
 module "public_subnets" {
-  source           = "../vpc_subnets"
+  source           = "github.com/dan-drew/terraform-aws-subnets"
   cidr_block       = cidrsubnet(var.cidr_block, var.subnet_group_cidr_bits, var.public_subnet_offset)
   name             = "public"
   subnet_type      = "public"
