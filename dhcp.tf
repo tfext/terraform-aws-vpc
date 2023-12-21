@@ -12,10 +12,7 @@ resource "aws_vpc_dhcp_options" "vpc" {
   domain_name         = join(" ", compact(concat(var.dhcp_domain_names, [local.default_domain_name])))
   domain_name_servers = ["AmazonProvidedDNS"]
 
-  tags = merge(
-    { Name = var.name },
-    module.utils.default_tags
-  )
+  tags = { Name = var.name }
 }
 
 resource "aws_vpc_dhcp_options_association" "vpc" {

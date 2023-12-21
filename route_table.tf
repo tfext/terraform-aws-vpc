@@ -10,33 +10,24 @@ locals {
 resource "aws_default_route_table" "vpc" {
   default_route_table_id = aws_vpc.vpc.default_route_table_id
 
-  tags = merge(
-    { Name = "${var.name}-default" },
-    module.utils.default_tags
-  )
+  tags = { Name = "${var.name}-default" }
 }
 
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.vpc.id
 
-  tags = merge(
-    { Name = "${var.name}-public" },
-    module.utils.default_tags
-  )
+  tags = { Name = "${var.name}-public" }
 }
 
 resource "aws_route_table" "private" {
   count  = local.private_route_table_count
   vpc_id = aws_vpc.vpc.id
 
-  tags = merge(
-    {
+  tags = {
       Name = join("", [
         var.name,
         "-private",
         var.multi_az_nat ? "-${module.aws_utils.availability_zone_suffixes[count.index]}" : ""
       ])
-    },
-    module.utils.default_tags
-  )
+    }
 }
