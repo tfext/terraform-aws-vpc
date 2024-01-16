@@ -5,7 +5,7 @@ locals {
 
 resource "aws_eip" "nat" {
   count = local.nat_count
-  vpc   = true
+  domain = "vpc"
 
   tags = {
       Name = join("", [
