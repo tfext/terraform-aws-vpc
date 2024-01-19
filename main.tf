@@ -1,5 +1,5 @@
 module "aws_utils" {
-  source = "github.com/dan-drew/terraform-aws-base"
+  source = "github.com/tfext/terraform-aws-base"
 }
 
 locals {
